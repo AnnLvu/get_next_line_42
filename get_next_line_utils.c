@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvutina <alvutina@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: cmarguer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:28:20 by alvutina          #+#    #+#             */
-/*   Updated: 2024/05/06 16:28:22 by alvutina         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:31:35 by cmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,29 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *left_str, char *buff)
+char	*ft_strjoin(char *left_str, char *buf, size_t j, size_t i)
 {
-	size_t	i;
-	size_t	j;
 	char	*str;
 
 	if (!left_str)
 	{
 		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
+		if (left_str != NULL)
+			left_str[0] = '\0';
+		else
+			return (NULL);
 	}
-	if (!left_str || !buff)
-		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buf)) + 1));
 	if (str == NULL)
+	{
+		free(left_str);
 		return (NULL);
-	i = -1;
-	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
-		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	}
+	while (left_str[++i] != '\0')
+		str[i] = left_str[i];
+	while (buf[j] != '\0')
+		str[i++] = buf[j++];
+	str[ft_strlen(left_str) + ft_strlen(buf)] = '\0';
 	free(left_str);
 	return (str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvutina <alvutina@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: cmarguer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:27:59 by alvutina          #+#    #+#             */
-/*   Updated: 2024/05/07 12:38:32 by alvutina         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:31:41 by cmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,13 @@ char	*get_next_line(int fd)
 {
 	int			size;
 	char		*buf;
-	char		*temporary_merged;
 	static char	*current_line;
 
 	if (ft_search_error(fd))
-		return (0);
+		return (NULL);
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
 	size = read(fd, buf, BUFFER_SIZE);
 	while (size > 0)
 	{
@@ -89,11 +90,7 @@ char	*get_next_line(int fd)
 		if (!current_line)
 			current_line = ft_strdup(buf);
 		else
-		{
-			temporary_merged = ft_strjoin(current_line, buf);
-			ft_free(&current_line);
-			current_line = temporary_merged;
-		}
+			current_line = ft_strjoin(current_line, buf, 0, -1);
 		if (ft_strchr(current_line, '\n'))
 			break ;
 		size = read(fd, buf, BUFFER_SIZE);
