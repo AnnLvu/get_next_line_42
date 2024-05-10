@@ -6,7 +6,7 @@
 /*   By: cmarguer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:27:59 by alvutina          #+#    #+#             */
-/*   Updated: 2024/05/10 17:28:01 by cmarguer         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:05:47 by cmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-static int	ft_search_error(int fd)
-{
-	if (fd == -1 || BUFFER_SIZE <= 0)
-		return (1);
-	return (0);
-}
-
 static void	ft_free(char **str)
 {
 	if (!str || !*str)
 		return ;
 	free(*str);
 	*str = NULL;
+}
+
+char	*ft_for_norm(char **buf, char **current_line)
+{
+	ft_free(buf);
+	ft_free(current_line);
+	return (NULL);
 }
 
 static char	*ft_extract_line_segment(char **str)
@@ -78,18 +78,14 @@ char	*get_next_line(int fd)
 	char		*buf;
 	static char	*current_line;
 
-	if (ft_search_error(fd))
+	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
 	size = read(fd, buf, BUFFER_SIZE);
 	if (size < 0)
-	{
-		ft_free(&buf);
-		ft_free(&current_line);
-		return (NULL);
-	}
+		return (ft_for_norm(&buf, &current_line));
 	while (size > 0)
 	{
 		buf[size] = '\0';
@@ -101,5 +97,5 @@ char	*get_next_line(int fd)
 			break ;
 		size = read(fd, buf, BUFFER_SIZE);
 	}
-	return (ft_free(&buf),ft_extract_line_segment(&current_line));
+	return (ft_free(&buf), ft_extract_line_segment(&current_line));
 }
