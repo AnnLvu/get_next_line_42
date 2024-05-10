@@ -6,7 +6,7 @@
 /*   By: cmarguer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:27:59 by alvutina          #+#    #+#             */
-/*   Updated: 2024/05/09 17:31:41 by cmarguer         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:28:01 by cmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	size = read(fd, buf, BUFFER_SIZE);
+	if (size < 0)
+	{
+		ft_free(&buf);
+		ft_free(&current_line);
+		return (NULL);
+	}
 	while (size > 0)
 	{
 		buf[size] = '\0';
@@ -95,5 +101,5 @@ char	*get_next_line(int fd)
 			break ;
 		size = read(fd, buf, BUFFER_SIZE);
 	}
-	return (ft_free(&buf), ft_extract_line_segment(&current_line));
+	return (ft_free(&buf),ft_extract_line_segment(&current_line));
 }
