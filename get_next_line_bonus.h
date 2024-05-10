@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvutina <alvutina@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: cmarguer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:14:18 by alvutina          #+#    #+#             */
-/*   Updated: 2024/05/07 14:15:41 by alvutina         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:12:29 by cmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *left_str, char *buff);
+char	*ft_strjoin(char *left_str, char *buf, size_t j, size_t i);
 char	*ft_strchr(char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);

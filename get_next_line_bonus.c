@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvutina <alvutina@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: cmarguer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:13:59 by alvutina          #+#    #+#             */
-/*   Updated: 2024/05/07 14:14:02 by alvutina         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:21:21 by cmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-static int	ft_search_error(int fd)
-{
-	if (fd == -1 || BUFFER_SIZE < 1)
-		return (1);
-	return (0);
-}
-
 static void	ft_free(char **str)
 {
 	if (!str || !*str)
 		return ;
 	free(*str);
 	*str = NULL;
+}
+
+char	*ft_for_norm(int fd, char **buf, char **current_line)
+{
+	ft_free(buf);
+	ft_free(&current_line[fd]);
+	return (NULL);
 }
 
 static char	*ft_extract_line_segment(char **str)
@@ -56,12 +56,12 @@ static char	*ft_extract_line_segment(char **str)
 	i = 0;
 	if (!str || !*str)
 		return (NULL);
-	while (str[0][i] != '\n' && str[0][i] != '\0')
+	while ((*str)[i] != '\n' && (*str)[i] != '\0')
 		i++;
-	segment = ft_substr(str[0], 0, i + 1);
-	temp = ft_strdup(str[0]);
+	segment = ft_substr(*str, 0, i + 1);
+	temp = ft_strdup(*str);
 	ft_free(str);
-	str[0] = ft_substr(temp, i + 1, ft_strlen(temp));
+	*str = ft_substr(temp, i + 1, ft_strlen(temp));
 	ft_free(&temp);
 	if (!ft_strchr(segment, '\n'))
 	{
@@ -76,24 +76,23 @@ char	*get_next_line(int fd)
 {
 	int			size;
 	char		*buf;
-	char		*temporary_merged;
 	static char	*current_line[65535];
 
-	if (ft_search_error(fd))
-		return (0);
+	if (fd == -1 || BUFFER_SIZE <= 0)
+		return (NULL);
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
 	size = read(fd, buf, BUFFER_SIZE);
+	if (size < 0)
+		return (ft_for_norm(fd, &buf, current_line));
 	while (size > 0)
 	{
 		buf[size] = '\0';
 		if (!current_line[fd])
 			current_line[fd] = ft_strdup(buf);
 		else
-		{
-			temporary_merged = ft_strjoin(current_line[fd], buf);
-			ft_free(&current_line[fd]);
-			current_line[fd] = temporary_merged;
-		}
+			current_line[fd] = ft_strjoin(current_line[fd], buf, 0, -1);
 		if (ft_strchr(current_line[fd], '\n'))
 			break ;
 		size = read(fd, buf, BUFFER_SIZE);
