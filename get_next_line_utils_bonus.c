@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmarguer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alvutina <alvutina@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 14:14:29 by alvutina          #+#    #+#             */
-/*   Updated: 2024/05/13 09:56:14 by alvutina         ###   ########.fr       */
+/*   Created: 2024/05/13 10:59:18 by alvutina          #+#    #+#             */
+/*   Updated: 2024/05/13 10:59:20 by alvutina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
