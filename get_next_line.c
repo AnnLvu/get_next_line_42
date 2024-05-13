@@ -40,7 +40,7 @@ static void	ft_free(char **str)
 	*str = NULL;
 }
 
-char	*ft_for_norm(char **buf, char **current_line)
+static char	*ft_for_norm(char **buf, char **current_line)
 {
 	ft_free(buf);
 	ft_free(current_line);
