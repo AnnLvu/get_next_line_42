@@ -35,7 +35,7 @@ To compile and test **get_next_line**, follow these steps:
 1. Clone the repository:
    ```bash
    git clone git@github.com:AnnLvu/get_next_line_42.git
-   cd get_next_line
+   cd get_next_line_42
 
 ## Compile get_next_line 💥
 
