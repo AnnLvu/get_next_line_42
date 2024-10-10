@@ -34,3 +34,12 @@ To compile and test **get_next_line**, follow these steps:
    ```bash
    git clone git@github.com:AnnLvu/get_next_line_42.git
    cd get_next_line
+2. Comile the get_next_line
+   make        # Compiles the GNL library ⚒️
+   make clean  # Cleans up object files 🧹
+   make fclean  # Full cleanup of generated files 🧼
+   make re     # Rebuild everything from scratch 🔄
+Now you're ready to use the get_next_line library in your project! 🚀
+
+
+   
