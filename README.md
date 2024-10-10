@@ -21,9 +21,11 @@ Here’s how the function behaves:
 The project involves creating the following key functions:
 - **get_next_line:** The main function that reads from a file descriptor and returns the next line.
 - **Helper functions:** To manage string manipulation and memory, such as:
-  - `ft_strjoin` (joins two strings)
   - `ft_strlen` (finds the length of a string)
+  - `ft_substr` (extracts a substring from a string)
   - `ft_strchr` (searches for a character in a string)
+  - `ft_strjoin` (joins two strings)
+  - `ft_memcpy` (copies memory from source to destination)
   - `ft_strdup` (duplicates a string)
 
 ## Installation 📦
@@ -36,13 +38,9 @@ To compile and test **get_next_line**, follow these steps:
    cd get_next_line
 
 ## Compile get_next_line 💥
- 
-   make        # Compiles the GNL library ⚒️
-   make clean  # Cleans up object files 🧹
-   make fclean  # Full cleanup of generated files 🧼
-   make re     # Rebuild everything from scratch 🔄
-   
-Now you're ready to use the get_next_line library in your project! 🚀
 
-
-   
+ ```bash
+ make        # Compiles the GNL library ⚒️
+ make clean  # Cleans up object files 🧹
+ make fclean  # Full cleanup of generated files 🧼
+ make re     # Rebuild everything from scratch 🔄
